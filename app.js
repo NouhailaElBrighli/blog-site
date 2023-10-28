@@ -8,25 +8,25 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-app.listen(3000);
+app.set('view engine', 'ejs');// the default path is ./views  
 
 app.get('/', (req, res) =>{
 	console.log(chalk.blue("responding wiht index page"));
-	res.sendFile('./docs/index.html', {root: __dirname});
+	// res.sendFile('./docs /index.html', {root: __dirname});
+	res.render('home');
 });
 
 app.get('/about.html', (req, res) =>{
 	console.log(chalk.blue("responding with about page"));
-	try{
-		res.sendFile('./docs/about.html', {root: __dirname});
-	}
-	catch(e)
-	{
-		console.log(chalk.red(e.message));
-	}
+	// res.sendFile('./docs /about.html', {root: __dirname});
+	res.render('about');
 });
 
 app.use((req,res) =>{
 	console.log(chalk.red("responding with 404"));
-	res.status(404).sendFile('./error/404.html', {root: __dirname})
+	// res.status(404).sendFile('./error/404.html', {root: __dirname})
+	res.render('404');
 })
+
+
+app.listen(3000);
