@@ -2,32 +2,41 @@ import express from 'express';
 import chalk from 'chalk';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
 
-app.set('view engine', 'ejs');// the default path is ./views  
+app.use(express.static('public'));
 
+app.set('view engine', 'ejs');// the default path is ./views  
 app.get('/', (req, res) =>{
-	console.log(chalk.blue("responding wiht index page"));
-	// res.sendFile('./docs /index.html', {root: __dirname});
-	res.render('home');
-});
+	console.log(chalk.blue("responding wiht home page"));
+	const blogs = [
+		{title: 'greet', snippet: 'i just wanna say hello this is awesome'},
+		{title: 'how are you', snippet: " How's life been treating you these days? I'm really curious to know"},
+	];
+	blogs.forEach(blog => {
+		console.log(blog.title);
+	});
+	res.render('home', {title : "Home", blogs});
+});;
 
 app.get('/about', (req, res) =>{
 	console.log(chalk.blue("responding with about page"));
-	// res.sendFile('./docs /about.html', {root: __dirname});
-	res.render('about');
+	res.render('about', {title : "About"});
+});
+
+app.get('/blogs/create', (req, res)=>{
+	console.log(chalk.yellow("responding with the create page"));
+	res.render('create', {title : "Create Blog"});
 });
 
 app.use((req,res) =>{
-	console.log(chalk.red(req.url));
 	console.log(chalk.red("responding with 404"));
-	// res.status(404).sendFile('./error/404.html', {root: __dirname})
-	res.render('404');
+	res.status(404).render('404', {title : "page not found"});
 })
+
 
 
 app.listen(3000);

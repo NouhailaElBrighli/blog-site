@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Blogs</title>
-</head>
+<%- include('./partials/head.ejs') %>
 <body>
-	<nav>
-		<div>
-			<h1>Blog HNA</h1>
-			<p>Welcome to my test blog</p>
-		</div>
-		<ul>
-			<li><a href="/">Blogs</a></li>
-			<li><a href="/about">About</a></li>
-			<li><a href="/blogs/create">New blog</a></li>
-		</ul>
-	</nav>
+	<%- include('./partials/nav.ejs')%>
 	<div>
 		<h2>Blogs</h2>
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima ut mollitia nihil corporis hic perspiciatis numquam itaque consectetur non ratione! Nisi, officiis reiciendis quo placeat laborum sint aperiam vel illo.</p>
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ipsum, saepe vero quisquam facere nulla illum culpa voluptas qui ab architecto repellendus autem! Facere ipsam porro fuga error sint harum? Culpa doloribus necessitatibus debitis blanditiis illum placeat earum dicta illo.</p>
-		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores, nisi.</p>
+		<% if(blogs.lenght != 0) { %>
+			<% blogs.forEach(blog =>{ %>
+				<h4><%=blog.title%></h4>
+				<p><%=blog.snippet%></p>
+			<% }) %>
+		<% } %>
 	</div>
+	<%- include('./partials/footer.ejs') %>
 </body>
 </html>
