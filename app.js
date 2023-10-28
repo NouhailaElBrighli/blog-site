@@ -16,13 +16,14 @@ app.get('/', (req, res) =>{
 	res.render('home');
 });
 
-app.get('/about.html', (req, res) =>{
+app.get('/about', (req, res) =>{
 	console.log(chalk.blue("responding with about page"));
 	// res.sendFile('./docs /about.html', {root: __dirname});
 	res.render('about');
 });
 
 app.use((req,res) =>{
+	console.log(chalk.red(req.url));
 	console.log(chalk.red("responding with 404"));
 	// res.status(404).sendFile('./error/404.html', {root: __dirname})
 	res.render('404');
