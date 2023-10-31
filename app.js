@@ -2,10 +2,11 @@ import express from 'express';
 import chalk from 'chalk';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
 const app = express();
+
 
 app.use(express.static('public'));
 
@@ -16,10 +17,8 @@ app.get('/', (req, res) =>{
 		{title: 'greet', snippet: 'i just wanna say hello this is awesome'},
 		{title: 'how are you', snippet: " How's life been treating you these days? I'm really curious to know"},
 	];
-	blogs.forEach(blog => {
-		console.log(blog.title);
-	});
 	res.render('home', {title : "Home", blogs});
+
 });;
 
 app.get('/about', (req, res) =>{

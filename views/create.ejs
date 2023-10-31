@@ -3,7 +3,7 @@
 <%- include('./partials/head.ejs') %>
 <body>
 	<%- include('./partials/nav.ejs')%>
-	<div>
+	<div class="create">
 		<h2>Create your own blog</h2>
 		<form>
 			<label for="title">Blog title: </label>
@@ -12,7 +12,7 @@
 			<label for="snippet">Blog snippet: </label>
 			<input type="text" name="snippet" id="snippet" required>
 
-			<label for="body">Blog body</label>
+			<label for="body">Blog body: </label>
 			<textarea name="body" id="body" cols="50" rows="2"></textarea>
 
 			<button>Submit</button>
