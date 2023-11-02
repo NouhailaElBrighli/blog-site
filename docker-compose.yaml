@@ -11,9 +11,3 @@ services:
       - POSTGRES_DB=test
       - POSTGRES_USER=nouha
       - POSTGRES_PASSWORD=nono123
-  adminer:
-       image: adminer
-       container_name: adminer
-       restart: always
-       ports:
-          - 8080:8080

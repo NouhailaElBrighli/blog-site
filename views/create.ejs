@@ -5,16 +5,15 @@
 	<%- include('./partials/nav.ejs')%>
 	<div class="create">
 		<h2>Create your own blog</h2>
-		<form>
+		<form action="/blogs" method="POST">
 			<label for="title">Blog title: </label>
-			<input type="text" name="title" id="title" required>
+			<input type="text" name="title" id="title" name="title" required>
 
 			<label for="snippet">Blog snippet: </label>
-			<input type="text" name="snippet" id="snippet" required>
+			<input type="text" name="snippet" id="snippet" name="snippet" required>
 
 			<label for="body">Blog body: </label>
-			<textarea name="body" id="body" cols="50" rows="2"></textarea>
-
+			<textarea name="body" id="body" name="body" cols="50" rows="2"></textarea>
 			<button>Submit</button>
 		</form>
 	</div>
