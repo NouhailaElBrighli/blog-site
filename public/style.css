@@ -6,12 +6,14 @@ body{
 	padding: 0 20px;
 	font-family: 'Noto Sans';
 }
+
 h1, h2, h3, a, ul, p{
 	margin: 0;
 	padding: 0;
 	text-decoration: none;
 	color: #222;
 }
+
 nav{
 	display: flex;
 	justify-content: space-between;
@@ -20,66 +22,77 @@ nav{
 	padding-bottom: 10px;
 	border-bottom: 1px solid rgb(141, 141, 140);
 }
+
 nav ul{
 	display: flex;
 	align-items: flex-end;
 }
+
 nav li{
 	list-style-type: none;
 	margin-left: 20px;
 }
+
 nav h1{
 	font-size: 2.5em;
 	margin-bottom: 10px;
 }
+
 nav p, nav a{
 	color: #777;
 	font-weight: 100;
 }
+
 footer{
 	text-align: center;
 	margin: 20px;
 	color: #777;
 	font-weight: bold;
 }
+
 h2{
 	text-transform: capitalize;
 	margin-bottom: 40px;
 	font-weight: bold;
 }
+
 h3{
 	text-transform: capitalize;
 	margin-bottom: 4px;
 	font-weight: bold;
 }
+
 .content{
 	margin-left: 20px;
 }
+
 .content p {
 	margin-bottom: 20px;
 	padding-left: 10px;
 }
+
 input, textarea{
 	display: block;
 	width: 100%;
 	margin: 10px 0;
 	padding: 10px;
 }
-textarea
-{
+
+textarea{
 	height: 120px;
 }
-label
-{
+
+label{
 	display: block;
 	margin-top: 10px;
 	font-weight: bold;
 }
-form
-{
+
+form{
 	max-width: 370px;
 	margin: 0 auto;
 }
+
 button{
 	padding: 6px;
 	color: white;
@@ -89,6 +102,7 @@ button{
 	border: 0;
 	cursor: pointer;
 }
+
 .title-snippet{
 	border-left: 6px solid deeppink;
 	margin-bottom: 40px;
@@ -99,3 +113,19 @@ button{
 	color:  rgb(214, 16, 122);
 }
 
+.details{
+	position: relative;
+}
+
+.delete {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-radius: 50%;
+	padding: 5px;
+}
+
+.delete:hover{
+	cursor: pointer;
+	box-shadow: 1px 2px 3px rgb(0, 0, 0, 0.2);
+}

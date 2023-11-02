@@ -6,7 +6,29 @@
 	<div class="details content">
 		<h2><%= blog.title %></h2>
 		<p><%= blog.body %></p>
+		<p class="delete" data-blog_id="<%=blog.id %>">delete</p>
 	</div>
 	<%- include('./partials/footer.ejs')  %>
+
+	<script>
+		const del = document.querySelector('p.delete');
+
+		console.log(del);
+		del.addEventListener('click', (e) => {
+			const endpoint = `/blog/${del.dataset.blog_id}`;
+
+			console.log("this is the endpoint: " + endpoint)
+			fetch(endpoint, {
+				method: 'DELETE'
+			})
+			.then((response) => response.json()) // must be returned to send --> data 
+			.then((data) => {
+				window.location.href = data.redirect;
+			})
+			.catch(err => {console.log("errorr: " + err.message)});
+		});
+
+	</script>
+
 </body>
 </html>

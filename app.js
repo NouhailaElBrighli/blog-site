@@ -1,5 +1,5 @@
 import express from 'express';
-import chalk from 'chalk';
+import chalk, { backgroundColorNames } from 'chalk';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import morgan from 'morgan';
@@ -13,9 +13,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
 
-// deleteBlogs();
+// deleteBlogs()
 
-
+//---------------------------------------------
 app.use(express.urlencoded({extended : true }));
 
 app.set('view engine', 'ejs');//default path : ./views
@@ -27,15 +27,33 @@ app.use('/blog/create', express.static('public'));
 app.use('/blogs', express.static('public'));
 
 app.use(morgan('dev'));
+// -------------------------------------------------
+
+app.delete('/blog/:id', async (req, res) => {
+	console.log("this is the id that i'm looking for : " + req.params.id);
+	try{
+		await prisma.blogs.delete({
+			where :{
+				id: req.params.id,
+			}
+		});
+		res.json({redirect: '/blogs'})
+	}
+	catch(err){
+		console.log(err.message);
+	}
+
+});
+
 
 app.get('/', async (req, res) =>{
 	res.redirect('/blogs');
 	
 });
 
+
 app.post('/blogs', async (req, res) => {
 	try {
-		console.log(req.body);
 		const blog = await prisma.blogs.create({
 			data : req.body,
 		})
@@ -56,18 +74,19 @@ app.get('/blogs', async(req, res) =>{
 	}
 });
 
-app.get('/blogs/:id', async (req, res) =>{
+app.get('/blogs/:id', async (req, res, next) =>{
 	try{
 		const blog = await prisma.blogs.findUnique({
 			where : {
 				id: req.params.id,
 			}
 		});
-		console.log(blog.body);
-		res.render('details', {title : "Details", blog: blog});
+		if (!blog)
+			next();
+		else
+			res.render('details', {title : "Details", blog: blog});
 	}
 	catch(e){
-		console.log(e.message);
 		res.status(500).json({err: 'details error ', message: e.message});
 	}
 })
