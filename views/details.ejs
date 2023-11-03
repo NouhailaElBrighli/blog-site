@@ -15,7 +15,7 @@
 
 		console.log(del);
 		del.addEventListener('click', (e) => {
-			const endpoint = `/blog/${del.dataset.blog_id}`;
+			const endpoint = `/blogs/${del.dataset.blog_id}`;
 
 			console.log("this is the endpoint: " + endpoint)
 			fetch(endpoint, {
