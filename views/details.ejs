@@ -6,12 +6,12 @@
 	<div class="details content">
 		<h2><%= blog.title %></h2>
 		<p><%= blog.body %></p>
-		<p class="delete" data-blog_id="<%=blog.id %>">delete</p>
+		<img class="delete" data-blog_id="<%=blog.id %>" src="trashicon.svg" alt="trashicon">
 	</div>
 	<%- include('./partials/footer.ejs')  %>
 
 	<script>
-		const del = document.querySelector('p.delete');
+		const del = document.querySelector('img.delete');
 
 		console.log(del);
 		del.addEventListener('click', (e) => {
